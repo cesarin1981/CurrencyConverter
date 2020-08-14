@@ -17,30 +17,30 @@ namespace CurrencyConverterTests
             BaseCurrency toCur;
 
             amount = 100.0M;
-            fromCur = new USDCurrency();
-            toCur = new USDCurrency();
+            fromCur = new UsdCurrency();
+            toCur = new UsdCurrency();
             result = ConvertibleCurrency.CurrencyConvert(amount, fromCur, toCur);
             Assert.AreEqual(100.0M, result, "USD to USD NO CAMBIA");
 
-            fromCur = new PENCurrency();
-            toCur = new PENCurrency();
+            fromCur = new PenCurrency();
+            toCur = new PenCurrency();
             result = ConvertibleCurrency.CurrencyConvert(amount, fromCur, toCur);
             Assert.AreEqual(100.0M, result, "PEN to PEN NO CAMBIA");
 
-            fromCur = new EURCurrency();
-            toCur = new EURCurrency();
+            fromCur = new EurCurrency();
+            toCur = new EurCurrency();
             result = ConvertibleCurrency.CurrencyConvert(amount, fromCur, toCur);
             Assert.AreEqual(100.0M, result, "EUR to EUR NO CAMBIA");
             decimal expected;
             
-            fromCur = new USDCurrency();
-            toCur = new EURCurrency();
+            fromCur = new UsdCurrency();
+            toCur = new EurCurrency();
             result = ConvertibleCurrency.CurrencyConvert(amount, fromCur, toCur);
             expected = amount * (decimal) 0.85;
             Assert.AreEqual(expected, result, "US to AUS is incorrect");
            
-            fromCur = new PENCurrency();
-            toCur = new EURCurrency();
+            fromCur = new PenCurrency();
+            toCur = new EurCurrency();
             result = ConvertibleCurrency.CurrencyConvert(amount, fromCur, toCur);
             expected = amount * (decimal) 4.16;
             Assert.AreEqual(expected, result, "PEN to EUR es incorrecto");
@@ -53,12 +53,12 @@ namespace CurrencyConverterTests
             decimal result;
             decimal expected;
 
-            currency = new ConvertibleCurrency(new USDCurrency(), 100.0M);
-            result = currency.ConvertTo(new USDCurrency());
+            currency = new ConvertibleCurrency(new UsdCurrency(), 100.0M);
+            result = currency.ConvertTo(new UsdCurrency());
             Assert.AreEqual(100.0M, result, "USD to USD no cambia");
 
-            currency = new ConvertibleCurrency(new EURCurrency(), 100.0M);
-            result = currency.ConvertTo(new PENCurrency());
+            currency = new ConvertibleCurrency(new EurCurrency(), 100.0M);
+            result = currency.ConvertTo(new PenCurrency());
             expected = 100.0M / (decimal) 4.16;
             Assert.AreEqual(expected, result, " EUR a PEN resultado incorrecto");
         }

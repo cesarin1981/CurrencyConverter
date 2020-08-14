@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CurrencyConverterLibreria
 {
     public abstract class BaseCurrency
@@ -14,7 +9,7 @@ namespace CurrencyConverterLibreria
         }
     }
 
-    public class USDCurrency : BaseCurrency
+    public class UsdCurrency : BaseCurrency
     {
         public override decimal InUS
         {
@@ -27,7 +22,7 @@ namespace CurrencyConverterLibreria
         }
     }
 
-    public class PENCurrency : BaseCurrency
+    public class PenCurrency : BaseCurrency
     {
         public override decimal InUS
         {
@@ -40,7 +35,7 @@ namespace CurrencyConverterLibreria
         }
     }
 
-    public class EURCurrency : BaseCurrency
+    public class EurCurrency : BaseCurrency
     {
         public override decimal InUS
         {
@@ -55,8 +50,8 @@ namespace CurrencyConverterLibreria
 
     public class ConvertibleCurrency
     {
-        private decimal amount;
-        private BaseCurrency currency;
+        private readonly decimal amount;
+        private readonly BaseCurrency currency;
         public ConvertibleCurrency(BaseCurrency type, decimal val)
         {
             currency = type;
@@ -66,10 +61,7 @@ namespace CurrencyConverterLibreria
         public static decimal CurrencyConvert(decimal amount, BaseCurrency fromCur,
                   BaseCurrency toCur)
         {
-            decimal converted = 0.0M;
-            ConvertibleCurrency currency = new ConvertibleCurrency(fromCur, amount);
-            converted = currency.ConvertTo(toCur);
-            return converted;
+                        return new ConvertibleCurrency(fromCur, amount).ConvertTo(toCur);
         }
 
          public decimal ConvertTo(BaseCurrency type)
@@ -81,14 +73,14 @@ namespace CurrencyConverterLibreria
 
         private decimal ConvertToUS()
         {
-            decimal converted = 0.0M;
+            decimal converted = 0;
             converted = amount / currency.InUS;
             return converted;
         }
 
         private decimal ConvertFromUS(BaseCurrency type, decimal USAmount)
         {
-            decimal converted = 0.0M;
+            decimal converted = 0;
             converted = USAmount * type.InUS;
             return converted;
         }

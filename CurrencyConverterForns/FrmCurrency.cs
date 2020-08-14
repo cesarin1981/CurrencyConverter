@@ -1,13 +1,6 @@
 ﻿using CurrencyConverterLibreria;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CurrencyConverterForms
@@ -20,8 +13,8 @@ namespace CurrencyConverterForms
         }
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            decimal converted = 0.0M;
-            decimal initial = 0.0M;
+            decimal converted = 0;
+            decimal initial = 0;
             BaseCurrency fromCur;
             BaseCurrency toCur;
 
@@ -36,9 +29,9 @@ namespace CurrencyConverterForms
         {
             ArrayList currencyList = new ArrayList();
 
-            currencyList.Add(new PENCurrency());
-            currencyList.Add(new USDCurrency());
-            currencyList.Add(new EURCurrency());
+            currencyList.Add(new PenCurrency());
+            currencyList.Add(new UsdCurrency());
+            currencyList.Add(new EurCurrency());
             fromCombo.DataSource = currencyList;
             toCombo.DataSource = currencyList.Clone();
         }
